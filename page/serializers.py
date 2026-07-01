@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from page.models import Car
+from page.models import Car,Fifa
 
 
 class CarListSerializer(serializers.Serializer):
@@ -27,7 +27,21 @@ class CarCreateSerializer(serializers.Serializer):
         return instance
 
 
-class CarDestroySerializer(serializers.Serializer):
-    id = serializers.IntegerField()
+# class CarDestroySerializer(serializers.Serializer):
+#     id = serializers.IntegerField()
 
 
+
+
+class FifaSerializer(serializers.Serializer):
+    class Meta:
+        model = Fifa
+        fields = [
+            'id',
+            'title',
+            'team_count',
+            'address',
+        ]
+        extra_kwargs = {
+            'id': 'read_only',
+        }
